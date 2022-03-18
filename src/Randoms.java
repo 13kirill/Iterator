@@ -1,35 +1,30 @@
 import java.util.Iterator;
 import java.util.Random;
 
+
 public class Randoms implements Iterable<Integer> {
     protected Random random;
+    protected int min;
+    protected int max;
 
     public Randoms(int min, int max) {
-
+        this.min = min;
+        this.max = max;
+        this.random = new Random();
     }
 
     @Override
     public Iterator<Integer> iterator() {
-        return new Iterator<Integer>() {
-            int a;
-            int next = random.nextInt();
+        return new Iterator<>() {
 
             @Override
             public boolean hasNext() {
-                if (a == 100) {
-                    return false;
-                } else {
-                    return true;
-                }
+                return true;
             }
 
             @Override
             public Integer next() {
-                if (a == 100) {
-                    return a;
-                } else {
-                    return next;
-                }
+                return random.nextInt(max - min + 1) + min;
             }
         };
     }
